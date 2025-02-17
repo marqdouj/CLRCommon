@@ -1,8 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Marqdouj.CLRCommon
 {
-    public class StateContainer
+    public class StateContainer : INotifyPropertyChanged
     {
         /// <summary>
         /// If the value is different, then sets the value and invokes OnChange.
@@ -21,10 +22,17 @@ namespace Marqdouj.CLRCommon
 
             oldValue = newValue;
             NotifyStateChanged(propertyName);
+            NotifyPropertyChanged(propertyName);
         }
 
-        public event Action<string>? OnChange;
+        public event Action<string>? StateChanged;
 
-        protected void NotifyStateChanged(string e) => OnChange?.Invoke(e);
+        protected void NotifyStateChanged(string e) => StateChanged?.Invoke(e);
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void NotifyPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
