@@ -6,7 +6,7 @@ namespace Marqdouj.CLRCommon
     public class StateContainer : INotifyPropertyChanged
     {
         /// <summary>
-        /// If the value is different, then sets the value and invokes OnChange.
+        /// If the value is different, then sets the value and invokes StateChanged/PropertyChanged.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="oldValue"></param>
@@ -25,11 +25,18 @@ namespace Marqdouj.CLRCommon
             NotifyPropertyChanged(propertyName);
         }
 
+        /// <summary>
+        /// Invoked when the state of the container changes (i.e. Blazor state management).
+        /// href="https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management?view=aspnetcore-9.0&pivots=server#in-memory-state-container-service"
+        /// </summary>
         public event Action<string>? StateChanged;
 
-        protected void NotifyStateChanged(string e) => StateChanged?.Invoke(e);
+        protected void NotifyStateChanged(string propertyName) => StateChanged?.Invoke(propertyName);
 
-
+        /// <summary>
+        /// Invoked when a property of the container changes. Used for data binding.
+        /// href="https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.inotifypropertychanged?view=net-6.0"
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void NotifyPropertyChanged(string propertyName) =>
