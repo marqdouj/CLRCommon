@@ -5,6 +5,48 @@ namespace Tests
     [TestClass]
     public sealed class StringExtensionTests
     {
+        #region ToTitleCase
+
+        [TestMethod]
+        public void String_ToTitleCase()
+        {
+            //Arrange
+            const string value = "this is a test.";
+            const string expected = "This Is A Test.";
+            //Act
+            var result = value.ToTitleCase();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void String_ToTitleCase_WithAllUpperWord()
+        {
+            //Arrange
+            const string value = "this is a TEST.";
+            const string expected = "This Is A TEST.";
+            //Act
+            var result = value.ToTitleCase();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void String_ToTitleCase_NoConversion()
+        {
+            //Arrange
+            const string value = "This Is A Test.";
+            const string expected = "This Is A Test.";
+            //Act
+            var result = value.ToTitleCase();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
+
+        #region Truncate
+
         [TestMethod]
         public void Strings_Truncate_MaxLengthEqual()
         {
@@ -88,5 +130,7 @@ namespace Tests
             //Act/Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Truncate(maxLength, suffix));
         }
+
+        #endregion
     }
 }

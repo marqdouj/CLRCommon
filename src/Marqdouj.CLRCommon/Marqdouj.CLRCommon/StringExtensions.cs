@@ -11,18 +11,19 @@ namespace Marqdouj.CLRCommon
         public const string ELLIPSIS = "…";
 
         /// <summary>
-        /// Returns a string containing a specified number of characters from the left side of a string.
+        /// Returns a string containing a specified number of characters from the left side of a string, 
+        /// + suffix (if value was actually truncated)
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="maxLength">Max number of chars, not including the suffix</param>
+        /// <param name="length">number of chars to return; not including the suffix</param>
         /// <param name="suffix">value to append if string is truncated. default = …</param>
-        /// <returns></returns>
-        public static string? Truncate(this string value, int maxLength, string suffix = ELLIPSIS)
+        /// <returns>truncated value + suffix (if applicable). Note: if value.IsNullOrEmpty returns value</returns>
+        public static string? Truncate(this string value, int length, string suffix = ELLIPSIS)
         {
             if (string.IsNullOrEmpty(value)) return value;
-            if (maxLength >= value.Length) return value;
+            if (length >= value.Length) return value;
 
-            var result = value[.. maxLength] + suffix;
+            var result = value[.. length] + suffix;
             return result;
         }
 
