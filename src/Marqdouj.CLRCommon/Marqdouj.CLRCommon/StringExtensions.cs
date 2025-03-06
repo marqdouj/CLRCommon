@@ -76,5 +76,19 @@ namespace Marqdouj.CLRCommon
 
             return value;
         }
+
+        /// <summary>
+        /// Converts line endings to Environment.NewLine <see cref="Environment.NewLine"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToNewLine(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return value;
+            value = value.Replace("\r\n", "\n");
+            value = value.Replace("\r", "\n");
+            value = value.Replace("\n", Environment.NewLine);
+            return value;
+        }
     }
 }

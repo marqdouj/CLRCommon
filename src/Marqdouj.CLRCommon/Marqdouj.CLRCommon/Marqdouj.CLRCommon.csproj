@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<Version>8.2.0</Version>
+	<Version>8.2.1</Version>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Title>C# helper classes</Title>
 	<PackageProjectUrl>https://github.com/marqdouj/CLRCommon</PackageProjectUrl>
@@ -15,7 +15,6 @@
 	<Copyright>© Douglas Marquardt. All rights reserved.</Copyright>
 	<Description>C# helper classes</Description>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
