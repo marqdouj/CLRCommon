@@ -58,5 +58,35 @@ namespace Tests
             Assert.IsTrue(result!.Length == expectedLength);
             Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void Strings_Truncate_MaxLengthZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 0;
+            const string suffix = StringExtensions.ELLIPSIS;
+            const string expected = StringExtensions.ELLIPSIS;
+            var expectedLength = StringExtensions.ELLIPSIS.Length;
+
+            //Act
+            var result = value.Truncate(maxLength, suffix);
+
+            //Assert
+            Assert.IsTrue(result!.Length == expectedLength);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_Truncate_MaxLengthLessThanZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = -1;
+            const string suffix = StringExtensions.ELLIPSIS;
+
+            //Act/Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Truncate(maxLength, suffix));
+        }
     }
 }
