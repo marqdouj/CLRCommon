@@ -7,6 +7,9 @@ CLRCommon is a collection of helper utilities and classes for .NET development.
 https://www.nuget.org/packages/Marqdouj.CLRCommon/
 
 ## Release Notes
+v8.3.0
+ - refactored StringExtensions.Truncate.
+
 v8.2.1
  - removed <AllowUnsafeBlocks>true</AllowUnsafeBlocks> from project file (not needed)
  - added StringExtension Method

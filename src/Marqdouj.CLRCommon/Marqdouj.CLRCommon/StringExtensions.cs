@@ -7,19 +7,23 @@ namespace Marqdouj.CLRCommon
         public const string CRLF = "\r\n";
         public const string LF = "\n";
         public const string CR = "\r";
+        public const string TAB = "\t";
+        public const string ELLIPSIS = "…";
 
         /// <summary>
         /// Returns a string containing a specified number of characters from the left side of a string.
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="maxLength"></param>
+        /// <param name="maxLength">Max number of chars, not including the suffix</param>
         /// <param name="suffix">value to append if string is truncated. default = …</param>
         /// <returns></returns>
-        public static string? Truncate(this string value, int maxLength, string suffix = "…")
+        public static string? Truncate(this string value, int maxLength, string suffix = ELLIPSIS)
         {
-            return value?.Length > maxLength
-                ? $"{value[..maxLength]}{suffix}"
-                : value;
+            if (string.IsNullOrEmpty(value)) return value;
+            if (maxLength >= value.Length) return value;
+
+            var result = value[.. maxLength] + suffix;
+            return result;
         }
 
         /// <summary>
