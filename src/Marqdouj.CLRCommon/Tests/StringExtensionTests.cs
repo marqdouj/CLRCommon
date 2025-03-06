@@ -5,10 +5,76 @@ namespace Tests
     [TestClass]
     public sealed class StringExtensionTests
     {
+        #region Left
+
+        [TestMethod]
+        public void Strings_Left_MaxLengthEqual()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length;
+            const string expected = value;
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthLess()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 5;
+            const string expected = "This ";
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthGreater() 
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length + 1;
+            const string expected = value;
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 0;
+            const string expected = "";
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthLessThanZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = -1;
+            //Act/Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Left(maxLength));
+        }
+
+        #endregion
+
         #region ToTitleCase
 
         [TestMethod]
-        public void String_ToTitleCase()
+        public void Strings_ToTitleCase()
         {
             //Arrange
             const string value = "this is a test.";
@@ -20,7 +86,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void String_ToTitleCase_WithAllUpperWord()
+        public void Strings_ToTitleCase_WithAllUpperWord()
         {
             //Arrange
             const string value = "this is a TEST.";
@@ -32,7 +98,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void String_ToTitleCase_NoConversion()
+        public void Strings_ToTitleCase_NoConversion()
         {
             //Arrange
             const string value = "This Is A Test.";
