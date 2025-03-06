@@ -11,6 +11,7 @@ v8.2.1
  - removed <AllowUnsafeBlocks>true</AllowUnsafeBlocks> from project file (not needed)
  - added StringExtension Method
 	- String.ToNewLine - Converts line endings to Environment.NewLine
+
 v8.2.0
  - Updated Comments
  - added ListExtensions / IEnumerableExtensions
