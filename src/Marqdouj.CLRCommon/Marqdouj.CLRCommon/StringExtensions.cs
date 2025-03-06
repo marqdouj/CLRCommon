@@ -94,7 +94,7 @@ namespace Marqdouj.CLRCommon
         public static string ToNewLine(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) return value;
-            value.ToCrLf();
+            value = value.ToCrLf();
             value = value.Replace(CRLF, Environment.NewLine);
             return value;
         }

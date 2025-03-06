@@ -5,6 +5,72 @@ namespace Tests
     [TestClass]
     public sealed class StringExtensionTests
     {
+        #region Left
+
+        [TestMethod]
+        public void Strings_Left_MaxLengthEqual()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length;
+            const string expected = value;
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthLess()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 5;
+            const string expected = "This ";
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthGreater() 
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length + 1;
+            const string expected = value;
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 0;
+            const string expected = "";
+            //Act
+            var result = value.Left(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_MaxLengthLessThanZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = -1;
+            //Act/Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Left(maxLength));
+        }
+
+        #endregion
+
         #region ToCrLf
 
         [TestMethod]
@@ -132,68 +198,129 @@ namespace Tests
 
         #endregion
 
-        #region Left
+        #region ToNewLine
 
         [TestMethod]
-        public void Strings_Left_MaxLengthEqual()
+        public void Strings_ToNewLine_AtStart_CRLF()
         {
             //Arrange
-            const string value = "This is a test.";
-            var maxLength = value.Length;
-            const string expected = value;
+            const string value = "\r\nThis is a test.";
+            var expected = Environment.NewLine + "This is a test.";
             //Act
-            var result = value.Left(maxLength);
+            var result = value.ToNewLine();
             //Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void Strings_MaxLengthLess()
+        public void Strings_ToNewLine_AtMiddle_CRLF()
         {
             //Arrange
-            const string value = "This is a test.";
-            const int maxLength = 5;
-            const string expected = "This ";
+            const string value = "This is\r\n a test.";
+            var expected = $"This is{Environment.NewLine} a test.";
             //Act
-            var result = value.Left(maxLength);
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToNewLine_AtEnd_CRLF()
+        {
+            //Arrange
+            const string value = "This is a test.\r\n";
+            var expected = "This is a test." + Environment.NewLine;
+            //Act
+            var result = value.ToNewLine();
             //Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void Strings_MaxLengthGreater() 
+        public void Strings_ToNewLine_AtStart_LF()
         {
             //Arrange
-            const string value = "This is a test.";
-            var maxLength = value.Length + 1;
-            const string expected = value;
+            const string value = "\nThis is a test.";
+            var expected = Environment.NewLine + "This is a test.";
             //Act
-            var result = value.Left(maxLength);
+            var result = value.ToNewLine();
             //Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void Strings_MaxLengthZero()
+        public void Strings_ToNewLine_AtMiddle_LF()
         {
             //Arrange
-            const string value = "This is a test.";
-            const int maxLength = 0;
-            const string expected = "";
+            const string value = "This is\n a test.";
+            var expected = $"This is{Environment.NewLine} a test.";
             //Act
-            var result = value.Left(maxLength);
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToNewLine_AtEnd_LF()
+        {
+            //Arrange
+            const string value = "This is a test.\n";
+            var expected = "This is a test." + Environment.NewLine;
+            //Act
+            var result = value.ToNewLine();
             //Assert
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void Strings_MaxLengthLessThanZero()
+        public void Strings_ToNewLine_AtStart_MIXED()
+        {
+            //Arrange
+            const string value = "\r\n\nThis is a test.";
+            var expected = $"{Environment.NewLine}{Environment.NewLine}This is a test.";
+            //Act
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToNewLine_AtMiddle_MIXED()
+        {
+            //Arrange
+            const string value = "This is\r\n\n a test.";
+            var expected = $"This is{Environment.NewLine}{Environment.NewLine} a test.";
+            //Act
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToNewLine_AtEnd_MIXED()
+        {
+            //Arrange
+            const string value = "This is a test.\r\n\n";
+            var expected = $"This is a test.{Environment.NewLine}{Environment.NewLine}";
+            //Act
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToNewLine_NoLineFeed()
         {
             //Arrange
             const string value = "This is a test.";
-            const int maxLength = -1;
-            //Act/Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Left(maxLength));
+            var expected = "This is a test.";
+            //Act
+            var result = value.ToNewLine();
+            //Assert
+            Assert.AreEqual(expected, result);
         }
 
         #endregion

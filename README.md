@@ -7,6 +7,9 @@ CLRCommon is a collection of helper utilities and classes for .NET development.
 https://www.nuget.org/packages/Marqdouj.CLRCommon/
 
 ## Release Notes
+v8.4.0
+ - fixed bug in StringExtensions.ToNewLine
+
 v8.3.0
  - refactored StringExtensions.Truncate.
 
