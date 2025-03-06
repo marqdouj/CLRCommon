@@ -71,6 +71,72 @@ namespace Tests
 
         #endregion
 
+        #region Right
+
+        [TestMethod]
+        public void Strings_Right_MaxLengthEqual()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length;
+            const string expected = value;
+            //Act
+            var result = value.Right(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_Right_MaxLengthLess()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 5;
+            const string expected = "test.";
+            //Act
+            var result = value.Right(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_Right_MaxLengthGreater()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            var maxLength = value.Length + 1;
+            const string expected = value;
+            //Act
+            var result = value.Right(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_Right_MaxLengthZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = 0;
+            const string expected = "";
+            //Act
+            var result = value.Right(maxLength);
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_Right_MaxLengthLessThanZero()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const int maxLength = -1;
+            //Act/Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => value.Right(maxLength));
+        }
+
+        #endregion
+
         #region ToTitleCase
 
         [TestMethod]
