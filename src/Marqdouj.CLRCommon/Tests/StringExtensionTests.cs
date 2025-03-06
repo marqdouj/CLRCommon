@@ -5,6 +5,133 @@ namespace Tests
     [TestClass]
     public sealed class StringExtensionTests
     {
+        #region ToCrLf
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtStart_CRLF()
+        {
+            //Arrange
+            const string value = "\r\nThis is a test.";
+            const string expected = "\r\nThis is a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtMiddle_CRLF()
+        {
+            //Arrange
+            const string value = "This is\r\n a test.";
+            const string expected = "This is\r\n a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtEnd_CRLF()
+        {
+            //Arrange
+            const string value = "This is a test.\r\n";
+            const string expected = "This is a test.\r\n";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtStart_LF()
+        {
+            //Arrange
+            const string value = "\nThis is a test.";
+            const string expected = "\r\nThis is a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtMiddle_LF()
+        {
+            //Arrange
+            const string value = "This is\n a test.";
+            const string expected = "This is\r\n a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtEnd_LF()
+        {
+            //Arrange
+            const string value = "This is a test.\n";
+            const string expected = "This is a test.\r\n";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtStart_MIXED()
+        {
+            //Arrange
+            const string value = "\r\n\nThis is a test.";
+            const string expected = "\r\n\r\nThis is a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtMiddle_MIXED()
+        {
+            //Arrange
+            const string value = "This is\r\n\n a test.";
+            const string expected = "This is\r\n\r\n a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Strings_ToCrLf_AtEnd_MIXED()
+        {
+            //Arrange
+            const string value = "This is a test.\r\n\n";
+            const string expected = "This is a test.\r\n\r\n";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void Strings_ToCrLf_NoLineFeed()
+        {
+            //Arrange
+            const string value = "This is a test.";
+            const string expected = "This is a test.";
+            //Act
+            var result = value.ToCrLf();
+            //Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        #endregion
+
         #region Left
 
         [TestMethod]
