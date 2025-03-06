@@ -4,6 +4,10 @@ namespace Marqdouj.CLRCommon
 {
     public static partial class StringExtensions
     {
+        public const string CRLF = "\r\n";
+        public const string LF = "\n";
+        public const string CR = "\r";
+
         /// <summary>
         /// Returns a string containing a specified number of characters from the left side of a string.
         /// </summary>
@@ -70,9 +74,9 @@ namespace Marqdouj.CLRCommon
         {
             if (string.IsNullOrWhiteSpace(value)) return value;
 
-            value = value.Replace("\r\n", "\n");
-            value = value.Replace("\r", "\n");
-            value = value.Replace("\n", "\r\n");
+            value = value.Replace(CRLF, LF);
+            value = value.Replace(CR, LF);
+            value = value.Replace(LF, CRLF);
 
             return value;
         }
@@ -85,9 +89,8 @@ namespace Marqdouj.CLRCommon
         public static string ToNewLine(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) return value;
-            value = value.Replace("\r\n", "\n");
-            value = value.Replace("\r", "\n");
-            value = value.Replace("\n", Environment.NewLine);
+            value.ToCrLf();
+            value = value.Replace(CRLF, Environment.NewLine);
             return value;
         }
     }
