@@ -23,7 +23,22 @@ namespace Marqdouj.CLRCommon
 
             Min = min;
             Max = max;
-            _value = value;
+            _value = CoerceValue(value);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MinMaxN{T}"/> class.
+        /// Value is set to the minimum value.
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        public MinMaxN(T min, T max)
+        {
+            ArgumentOutOfRangeException.ThrowIfGreaterThan(min, max);
+
+            Min = min;
+            Max = max;
+            _value = min;
         }
 
         /// <summary>
@@ -38,19 +53,26 @@ namespace Marqdouj.CLRCommon
 
         /// <summary>
         /// The current value within the range.
+        /// Value is coerced to the minimum or maximum value if it is outside the range.
         /// </summary>
         public T Value
         {
             get => _value;
             set
             {
-                if (value < Min)
-                    value = Min;
-                if (value > Max)
-                    value = Max;
+                value = CoerceValue(value);
 
                 SetValue(ref _value, value);
             }
+        }
+
+        private T CoerceValue(T value)
+        {
+            if (value < Min)
+                value = Min;
+            if (value > Max)
+                value = Max;
+            return value;
         }
     }
 }

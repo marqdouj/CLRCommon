@@ -274,22 +274,23 @@
         /// True if the string is numeric
         /// False if the string is not numeric (or empty)
         /// </returns>
-        public static bool IsNumeric(this string value)
+        public static bool IsNumeric(this string? value)
         {
             return double.TryParse(value, out _);
         }
 
         /// <summary>
-        /// Determines whether or not a string is a positive integer
+        /// Determines whether or not a string is a positive integer.
+        /// Zero is considered a positive integer.
         /// </summary>
         /// <param name="value">The string to parse</param>
         /// <returns>
         /// True if the string is numeric
         /// False if the string is not numeric (or empty)
         /// </returns>
-        public static bool IsPositiveInteger(this string value)
+        public static bool IsPositiveInteger(this string? value)
         {
-            return long.TryParse(value, out var result) && result > 0;
+            return long.TryParse(value, out var result) && result >= 0;
         }
     }
 }

@@ -7,6 +7,16 @@ CLRCommon is a collection of helper utilities and classes for .NET development.
 https://www.nuget.org/packages/Marqdouj.CLRCommon/
 
 ## Release Notes
+v8.5.0
+ - MinMaxN
+	- added MinMaxN tests to project
+	- added constructor without Value parameter
+ - added StringExtensions.IsNumeric tests to project
+	- added support for null strings in StringExtensions.IsNumeric
+ - added StringExtensions.IsPositiveInteger tests to project
+	- added support for null strings in StringExtensions.IsPositiveInteger
+	- Zero is now considered a positive integer in StringExtensions.IsPositiveInteger
+
 v8.4.0
  - added StringExtensions tests to project
  - found and fixed bug in StringExtensions.ToNewLine
