@@ -56,7 +56,7 @@ v8.2.0
 	- ToInt64OrNull - converts a string to a long or null
 	- ToInt64OrValue - converts a string to a long or a specified default value
 	- ToInt64List - converts a delimited string to a list of longs
-	- ToTitleCase - converts a string to title case using a specified culture
+	- ToTitleCase - converts a string to title case using a specified culture (wrapper for TextInfo.ToTitleCase))
 	- Truncate - truncates a string to a specified length
  - added Paging helper class
 	- PagedData<T> - a class to hold the results for paged data
