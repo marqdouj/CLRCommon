@@ -51,6 +51,10 @@ namespace Marqdouj.CLRCommon
         /// </summary>
         public T Max { get; }
 
+        public double Width => double.CreateChecked(Max - Min);
+
+        public T Center => Min + (Max / T.CreateChecked(2));
+
         /// <summary>
         /// The current value within the range.
         /// Value is coerced to the minimum or maximum value if it is outside the range.
