@@ -9,7 +9,7 @@ https://www.nuget.org/packages/Marqdouj.CLRCommon/
 ## Release Notes
 v8.7.0
 - Fixed bug in MinMaxN calculations for Center/Width properties
-- 
+
 v8.6.0 (Depreciated)
 - added Center/Width properties to MinMaxN
 
