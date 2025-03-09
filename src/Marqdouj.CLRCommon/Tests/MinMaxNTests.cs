@@ -53,15 +53,15 @@ namespace Tests
         [TestMethod]
         public void MinMaxN_Width_Double()
         {
-            MinMaxN<double> minMaxN = new(25.0, 75);
-            Assert.AreEqual(50.0, minMaxN.Width);
+            MinMaxN<double> minMaxN = new(29.35, 48.83);
+            Assert.AreEqual("19.48", minMaxN.Width.ToString("0.00"));
         }
 
         [TestMethod]
         public void MinMaxN_Center_Double()
         {
-            MinMaxN<double> minMaxN = new(25.0, 75.0);
-            Assert.AreEqual(62.5, minMaxN.Center);
+            MinMaxN<double> minMaxN = new(29.35, 48.83);
+            Assert.AreEqual(39.09, minMaxN.Center);
         }
     }
 }
