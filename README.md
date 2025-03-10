@@ -3,10 +3,10 @@
 CLRCommon is a collection of helper utilities and classes for .NET development.
 
 ## NuGet Package
+- https://www.nuget.org/packages/Marqdouj.CLRCommon/
 
-https://www.nuget.org/packages/Marqdouj.CLRCommon/
-
-## Demo of all my NuGet packages: https://github.com/marqdouj/BlazorDemo
+## Demo of all my NuGet packages: 
+- https://github.com/marqdouj/BlazorDemo
 
 ## Release Notes
 v8.7.1
