@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace Marqdouj.CLRCommon
 {
@@ -17,6 +18,7 @@ namespace Marqdouj.CLRCommon
         /// <param name="min"><see cref="Min"/></param>
         /// <param name="max"><see cref="Max"/></param>
         /// <param name="value"><see cref="Value"/></param>
+        [JsonConstructor]
         public MinMaxN(T min, T max, T value)
         {
             ArgumentOutOfRangeException.ThrowIfGreaterThan(min, max);

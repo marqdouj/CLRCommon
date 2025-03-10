@@ -7,6 +7,9 @@ CLRCommon is a collection of helper utilities and classes for .NET development.
 - https://www.nuget.org/packages/Marqdouj.CLRCommon/
 
 ## Release Notes
+v8.8.0
+- Added [JsonConstructor] to MinMaxN
+
 v8.7.1
 - Added NuGet pkg icon
 

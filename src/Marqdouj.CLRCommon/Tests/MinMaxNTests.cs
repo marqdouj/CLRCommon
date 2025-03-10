@@ -1,4 +1,5 @@
 ﻿using Marqdouj.CLRCommon;
+using System.Text.Json;
 
 namespace Tests
 {
@@ -20,6 +21,18 @@ namespace Tests
             Assert.AreEqual(0, minMaxN.Min);
             Assert.AreEqual(100, minMaxN.Max);
             Assert.AreEqual(0, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_Constructor_Json()
+        {
+            MinMaxN<int> minMaxN = new(0, 100, 50);
+            string json = JsonSerializer.Serialize(minMaxN);
+            MinMaxN<int>? minMaxN2 = JsonSerializer.Deserialize<MinMaxN<int>>(json);
+            Assert.IsNotNull(minMaxN2);
+            Assert.AreEqual(minMaxN.Min, minMaxN2.Min);
+            Assert.AreEqual(minMaxN.Max, minMaxN2.Max);
+            Assert.AreEqual(minMaxN.Value, minMaxN2.Value);
         }
 
         [TestMethod]
