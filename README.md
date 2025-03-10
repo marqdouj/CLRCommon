@@ -37,7 +37,7 @@ v8.3.0
  - refactored StringExtensions.Truncate.
 
 v8.2.1
- - removed <AllowUnsafeBlocks>true</AllowUnsafeBlocks> from project file (not needed)
+ - removed 'AllowUnsafeBlocks' from project file (not needed)
  - added StringExtension Method
 	- String.ToNewLine - Converts line endings to Environment.NewLine
 
