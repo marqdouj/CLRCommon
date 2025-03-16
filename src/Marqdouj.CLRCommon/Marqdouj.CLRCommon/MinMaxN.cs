@@ -80,5 +80,10 @@ namespace Marqdouj.CLRCommon
                 value = Max;
             return value;
         }
+
+        public override string ToString()
+        {
+            return Value?.ToString() ?? "";
+        }
     }
 }

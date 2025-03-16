@@ -36,6 +36,13 @@ namespace Tests
         }
 
         [TestMethod]
+        public void MinMaxN_ToString()
+        {
+            MinMaxN<int> minMaxN = new(0, 100, 25);
+            Assert.AreEqual("25", minMaxN.ToString());
+        }
+
+        [TestMethod]
         public void MinMaxN_Value()
         {
             MinMaxN<int> minMaxN = new(0, 100, 50)
