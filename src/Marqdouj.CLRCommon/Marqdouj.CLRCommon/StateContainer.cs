@@ -26,12 +26,26 @@ namespace Marqdouj.CLRCommon
         }
 
         /// <summary>
+        /// Indicates whether notifications should be suppressed (default = false). 
+        /// false - all notifications are sent; true - all notifications are suppressed.
+        /// This is useful when you want to suppress notifications while updating many values.
+        /// </summary>
+        #region SuppressNotifications
+        private bool suppressNotifications;
+        public bool SuppressNotifications { get => suppressNotifications; set => SetValue(ref suppressNotifications, value); }
+        #endregion
+
+        /// <summary>
         /// Invoked when the state of the container changes (i.e. Blazor state management).
         /// href="https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management?view=aspnetcore-9.0&pivots=server#in-memory-state-container-service"
         /// </summary>
         public event Action<string>? StateChanged;
 
-        protected void NotifyStateChanged(string propertyName) => StateChanged?.Invoke(propertyName);
+        protected virtual void NotifyStateChanged(string propertyName)
+        {
+            if (suppressNotifications) return;
+            StateChanged?.Invoke(propertyName);
+        }
 
         /// <summary>
         /// Invoked when a property of the container changes. Used for data binding.
@@ -39,7 +53,10 @@ namespace Marqdouj.CLRCommon
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void NotifyPropertyChanged(string propertyName) =>
+        protected virtual void NotifyPropertyChanged(string propertyName)
+        {
+            if (suppressNotifications) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
