@@ -3,7 +3,7 @@
     public static partial class StringExtensions
     {
         /// <summary>
-        /// Converts delimited string to Int32 List
+        /// Converts delimited string of integer to Int32 List
         /// </summary>
         /// <param name="value"></param>
         /// <param name="separator"></param>
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Converts delimited string to Int64 List
+        /// Converts delimited string of long to Int64 List
         /// </summary>
         /// <param name="value"></param>
         /// <param name="separator"></param>

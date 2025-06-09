@@ -3,22 +3,48 @@
     public static class ExceptionExtensions
     {
         /// <summary>
-        /// Resolves all messages, including inner exceptions.
+        /// Resolves all messages recursively.
         /// Originally designed for use with Aggregate exceptions, but will work with any Exception.
         /// </summary>
         /// <param name="ex"></param>
-        /// <returns></returns>
+        /// <returns>Returns a joined string of all messages, using '\n' as the separator</returns>
         public static string ToMessage(this Exception ex)
         {
-            var messages = ex.ToMessageList();
-            return string.Join("\n", messages);
+            return ex.ToMessage('\n');
         }
 
         /// <summary>
-        /// <see cref="ToMessage(Exception)"/>
+        /// Resolves all messages recursively.
+        /// Originally designed for use with Aggregate exceptions, but will work with any Exception.
         /// </summary>
         /// <param name="ex"></param>
-        /// <returns></returns>
+        /// <param name="separator">Separator for joining messages</param>
+        /// <returns>Returns a joined string of all messages, using a char separator. default = '\n'</returns>
+        public static string ToMessage(this Exception ex, char separator)
+        {
+            var messages = ex.ToMessageList();
+            return string.Join(separator, messages);
+        }
+
+        /// <summary>
+        /// Resolves all messages recursively.
+        /// Originally designed for use with Aggregate exceptions, but will work with any Exception.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="separator">Separator for joining messages</param>
+        /// <returns>Returns a joined string of all messages, using a string separator. default = "\n"</returns>
+        public static string ToMessage(this Exception ex, string separator)
+        {
+            var messages = ex.ToMessageList();
+            return string.Join(separator, messages);
+        }
+
+        /// <summary>
+        /// Resolves all messages recursively.
+        /// Originally designed for use with Aggregate exceptions, but will work with any Exception.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns>a list of all messages.</returns>
         public static List<string> ToMessageList(this Exception ex)
         {
             var messages = new List<string>();
