@@ -26,7 +26,8 @@ namespace Marqdouj.CLRCommon
                     Nullable.GetUnderlyingType(prop.PropertyType) :
                     prop.PropertyType;
 
-                table.Columns.Add(prop.Name, type);
+                if (type != null)
+                    table.Columns.Add(prop.Name, type);
             }
 
             foreach (var item in items)
