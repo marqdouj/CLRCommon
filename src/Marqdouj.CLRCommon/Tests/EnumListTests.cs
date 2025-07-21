@@ -11,6 +11,40 @@ namespace Tests
         }
 
         [TestMethod]
+        public void EnumList_ToNames_Empty()
+        {
+            //Arrange
+            var items = new EnumList<Test1>();
+            var expectedCount = 0;
+
+            //Act
+            var names = items.ToNames();
+
+            //Assert
+            Assert.AreEqual(expectedCount, names.Count);
+        }
+
+        [TestMethod]
+        public void EnumList_ToNames_NotEmpty()
+        {
+            //Arrange
+            var items = new EnumList<Test1>([Test1.One, Test1.Four]);
+            var expectedCount = 2;
+
+            //Names are ordered so elements should be reversed
+            var expectedItem0 = Test1.Four.ToString();
+            var expectedItem1 = Test1.One.ToString();
+
+            //Act
+            var names = items.ToNames();
+
+            //Assert
+            Assert.AreEqual(expectedCount, names.Count);
+            Assert.AreEqual(expectedItem0, names[0]); 
+            Assert.AreEqual(expectedItem1, names[1]);
+        }
+
+        [TestMethod]
         public void EnumList_IgnoreDuplicates_AddValue()
         {
             //Arrange

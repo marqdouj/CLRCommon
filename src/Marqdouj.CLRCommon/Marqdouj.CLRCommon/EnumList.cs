@@ -65,5 +65,11 @@ namespace Marqdouj.CLRCommon
                 RemoveItem(item);
             }
         }
+
+        /// <summary>
+        /// Get the list of names of the items
+        /// </summary>
+        /// <returns>Ordered list of item names (.ToString())</returns>
+        public List<string> ToNames() => [.. items.Select(e => e.ToString()).OrderBy(e => e)];
     }
 }

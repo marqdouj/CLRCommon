@@ -57,6 +57,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.8.5
+- added `EnumList.ToNames()` method. Returns an ordered list of item names.
+
 v8.8.4
 - added `EnumList`
 - added null check before adding column in ToDataTable
