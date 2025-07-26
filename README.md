@@ -14,6 +14,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 - **ExceptionExtensions**
   - ***`ToMessage()`***. Resolves all messages recursively. Returns a joined string (optional separator).
   - ***`ToList()`***. Resolves all messages recursively. Returns a list of messages.
+- **`FloatingPointExtensions`**
+  - `ToStringFormat()`. Converts a `float`, `double`, or `decimal` to a string 
+  with the option to truncate the decimal places if the value is a whole number (i.e. 1.00 becomes 1).
 - **ListExtensions**
   - `ToDataTable()`. Converts a list of objects to a System.Data.DataTable.
 - **MinMaxN**
@@ -57,6 +60,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.8.6
+- added `Floating Point` (decimal, double, float) `ToStringFormat()` extension method.
+
 v8.8.5
 - added `EnumList.ToNames()` method. Returns an ordered list of item names.
 
