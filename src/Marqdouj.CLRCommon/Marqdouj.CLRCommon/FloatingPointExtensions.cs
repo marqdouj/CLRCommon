@@ -1,7 +1,50 @@
 ﻿namespace Marqdouj.CLRCommon
 {
+    public interface IFloatingPointToStringFormatOptions
+    {
+        /// <summary>
+        /// <see cref="double.ToString(string?)"/> is used to format floating point numbers."/>
+        /// </summary>
+        string Format { get; set; }
+        /// <summary>
+        /// If true, and formatted decimal places are all zeros (i.e. 1.00), 
+        /// then the value is formatted using '"F0"' (i.e. returns '1').
+        /// </summary>
+        bool TruncateZeros { get; set; }
+        string TruncateFormat { get; set; }
+    }
+
+    public class FloatingPointToStringFormatOptions : IFloatingPointToStringFormatOptions
+    {
+        /// <summary>
+        /// <see cref="double.ToString(string?)">
+        /// </summary>
+        public string Format { get; set; } = "N2";
+        /// <summary>
+        /// remove decimal places if they are all zeros (i.e. 1.00 becomes 1)
+        /// </summary>
+        public bool TruncateZeros { get; set; }
+        /// <summary>
+        /// format used when truncating
+        /// </summary>
+        public string TruncateFormat { get; set; } = "N0";
+    }
+
     public static class FloatingPointExtensions
     {
+        public static string ToStringFormat(this decimal value, IFloatingPointToStringFormatOptions options)
+        {
+            return value.ToStringFormat(options.Format, options.TruncateZeros, options.TruncateFormat);
+        }
+        public static string ToStringFormat(this double value, IFloatingPointToStringFormatOptions options)
+        {
+            return value.ToStringFormat(options.Format, options.TruncateZeros, options.TruncateFormat);
+        }
+        public static string ToStringFormat(this float value, IFloatingPointToStringFormatOptions options)
+        {
+            return value.ToStringFormat(options.Format, options.TruncateZeros, options.TruncateFormat);
+        }
+
         /// <summary>
         /// Formats a decimal to a string using the specified format.
         /// </summary>

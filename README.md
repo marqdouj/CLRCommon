@@ -60,6 +60,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.8.7
+- added `FloatingPointToStringFormatOptions` to `FloatingPointExtensions.ToStringFormat()`
+
 v8.8.6
 - added `Floating Point` (decimal, double, float) `ToStringFormat()` extension method.
 
