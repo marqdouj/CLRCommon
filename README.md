@@ -19,7 +19,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
   with the option to truncate the decimal places if the value is a whole number (i.e. 1.00 becomes 1).
 - **ListExtensions**
   - `ToDataTable()`. Converts a list of objects to a System.Data.DataTable.
-- **MinMaxN**
+- **ObjectExtensions**
+  - `IsNumber()`. Checks if the underlying type code is a number.
+- - **MinMaxN**
   - `INumber` that is constrained between a minimum and maximum value.
 - **Paging**
 	- `PagedData` - a class to hold the results for paged data
@@ -60,6 +62,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.8.8
+- added `ObjectExtensions.IsNumber()`
+
 v8.8.7
 - added `FloatingPointToStringFormatOptions` to `FloatingPointExtensions.ToStringFormat()`
 
