@@ -21,7 +21,7 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
   - `ToDataTable()`. Converts a list of objects to a System.Data.DataTable.
 - **ObjectExtensions**
   - `IsNumber()`. Checks if the underlying type code is a number.
-- - **MinMaxN**
+- **MinMaxN**
   - `INumber` that is constrained between a minimum and maximum value.
 - **Paging**
 	- `PagedData` - a class to hold the results for paged data
