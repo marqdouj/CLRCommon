@@ -83,5 +83,68 @@ namespace Tests
             MinMaxN<double> minMaxN = new(29.35, 48.83);
             Assert.AreEqual(39.09, minMaxN.Center);
         }
+
+        #region StringValue
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Int()
+        {
+            MinMaxN<int> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "10";
+
+            Assert.AreEqual(10, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Int_OverMax()
+        {
+            MinMaxN<int> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "101";
+
+            Assert.AreEqual(100, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Int_BadValue()
+        {
+            MinMaxN<int> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "My 10";
+
+            Assert.AreEqual(50, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Double()
+        {
+            MinMaxN<double> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "10.5";
+
+            Assert.AreEqual(10.5, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Double_OverMax()
+        {
+            MinMaxN<double> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "100.5";
+
+            Assert.AreEqual(100, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Double_BadValue()
+        {
+            MinMaxN<double> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "My 10.5";
+
+            Assert.AreEqual(50, minMaxN.Value);
+        }
+        #endregion
     }
 }

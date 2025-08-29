@@ -23,7 +23,7 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
   - `IsNumber()`. Checks if the underlying type code is a number.
 - **MinMaxN**
   - `INumber` that is constrained between a minimum and maximum value.
-- **Paging**
+- - **Paging**
 	- `PagedData` - a class to hold the results for paged data
 	- `PagedRange` - a class to calculate a range of pages
 	- `PageInfo` - a class to hold paging information
@@ -62,6 +62,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.9.0
+- added `MinMaxN.StringValue`. Normally used for html text input components that support numbers, i.e. FluentTextField
+
 v8.8.8
 - added `ObjectExtensions.IsNumber()`
 

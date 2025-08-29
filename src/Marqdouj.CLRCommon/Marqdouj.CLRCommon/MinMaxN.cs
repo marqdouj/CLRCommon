@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 namespace Marqdouj.CLRCommon
@@ -79,6 +81,22 @@ namespace Marqdouj.CLRCommon
             if (value > Max)
                 value = Max;
             return value;
+        }
+
+        /// <summary>
+        /// normally used for html text input components that support numbers, i.e. FluentTextField
+        /// </summary>
+        [RegularExpression(@"^-?\d+(\.\d+)?$", ErrorMessage = "Only numeric values are allowed.")]
+        public virtual string? StringValue 
+        { 
+            get => Value?.ToString();
+            set 
+            {
+                if (T.TryParse(value, null, out var result))
+                    Value = result;
+
+                return;
+            }
         }
 
         public override string ToString()
