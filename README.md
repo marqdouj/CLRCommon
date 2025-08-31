@@ -23,6 +23,7 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
   - `IsNumber()`. Checks if the underlying type code is a number.
 - **MinMaxN**
   - `INumber` that is constrained between a minimum and maximum value.
+  - Provides a `StringValue` property to convert strings to/from the underlying INumber
 - - **Paging**
 	- `PagedData` - a class to hold the results for paged data
 	- `PagedRange` - a class to calculate a range of pages
@@ -62,6 +63,10 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.9.1
+- store the constuctor initial value as the `StringValue` default to be used 
+if the value assigned to `StringValue` can't be converted to the underlying INumber
+
 v8.9.0
 - added `MinMaxN.StringValue`. Normally used for html text input components that support numbers, i.e. FluentTextField
 

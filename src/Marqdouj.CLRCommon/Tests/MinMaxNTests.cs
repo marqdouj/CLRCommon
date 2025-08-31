@@ -145,6 +145,27 @@ namespace Tests
 
             Assert.AreEqual(50, minMaxN.Value);
         }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Default()
+        {
+            MinMaxN<double> minMaxN = new(0, 100, 50);
+
+            minMaxN.StringValue = "";
+
+            Assert.AreEqual(50, minMaxN.Value);
+        }
+
+        [TestMethod]
+        public void MinMaxN_StringValue_Default_NoValue()
+        {
+            MinMaxN<double> minMaxN = new(0, 100);
+
+            minMaxN.StringValue = "";
+
+            Assert.AreEqual(0, minMaxN.Value);
+        }
+
         #endregion
     }
 }

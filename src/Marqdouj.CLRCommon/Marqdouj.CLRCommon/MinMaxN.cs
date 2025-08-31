@@ -12,6 +12,7 @@ namespace Marqdouj.CLRCommon
     public class MinMaxN<T> : StateContainer where T : INumber<T>
     {
         private T _value;
+        private readonly T _valueDefault;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MinMaxN{T}"/> class.
@@ -27,6 +28,7 @@ namespace Marqdouj.CLRCommon
             Min = min;
             Max = max;
             _value = CoerceValue(value);
+            _valueDefault = _value;
         }
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace Marqdouj.CLRCommon
             Min = min;
             Max = max;
             _value = min;
+            _valueDefault = _value;
         }
 
         /// <summary>
@@ -89,13 +92,7 @@ namespace Marqdouj.CLRCommon
         public virtual string? StringValue 
         { 
             get => Value?.ToString();
-            set 
-            {
-                if (T.TryParse(value, null, out var result))
-                    Value = result;
-
-                return;
-            }
+            set  => Value = T.TryParse(value, null, out var result) ? result : _valueDefault;
         }
 
         public override string ToString()
