@@ -24,7 +24,7 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 - **MinMaxN**
   - `INumber` that is constrained between a minimum and maximum value.
   - Provides a `StringValue` property to convert strings to/from the underlying INumber
-- - **Paging**
+- **Paging**
 	- `PagedData` - a class to hold the results for paged data
 	- `PagedRange` - a class to calculate a range of pages
 	- `PageInfo` - a class to hold paging information
