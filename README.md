@@ -63,6 +63,12 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.9.3
+- `StateContainer`. Added the `CallerMemberName` attribute to invoke
+both `NotifyStateChanged` and `NotifyPropertyChanged` events. 
+This negates the need to supply a property name when manually invoking the methods
+in a property `set`. This also allows to provide a different name if required.
+
 v8.9.2
 - `StateContainer`. Added the `NotifyChanged` method to invoke
 both `NotifyStateChanged` and `NotifyPropertyChanged` events. 

@@ -51,7 +51,7 @@ namespace Marqdouj.CLRCommon
         /// </summary>
         public event Action<string>? StateChanged;
 
-        protected virtual void NotifyStateChanged(string propertyName)
+        protected virtual void NotifyStateChanged([CallerMemberName] string propertyName = "")
         {
             if (suppressNotifications) return;
             StateChanged?.Invoke(propertyName);
@@ -63,7 +63,7 @@ namespace Marqdouj.CLRCommon
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void NotifyPropertyChanged(string propertyName)
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (suppressNotifications) return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

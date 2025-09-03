@@ -1,4 +1,5 @@
 ﻿using Marqdouj.CLRCommon;
+using System.ComponentModel;
 using System.Security.Cryptography;
 
 namespace Tests
@@ -134,6 +135,32 @@ namespace Tests
 
         #endregion
 
+        [TestMethod]
+        public void StateContainer_Manual_StateChanged()
+        {
+            //arrange
+            var state = new TestState();
+
+            //act 
+            state.ValueStateChanged = true;
+
+            //assert
+            Assert.AreEqual(nameof(TestState.ValueStateChanged), state.LastChanged);
+        }
+
+        [TestMethod]
+        public void StateContainer_Manual_PropertyChanged()
+        {
+            //arrange
+            var state = new TestState();
+
+            //act 
+            state.ValuePropertyChanged = true;
+
+            //assert
+            Assert.AreEqual(nameof(TestState.ValuePropertyChanged), state.LastChanged);
+        }
+
         private class TestState : StateContainer, IDisposable
         {
             public TestState()
@@ -142,14 +169,18 @@ namespace Tests
                 PropertyChanged += TestState_PropertyChanged;
             }
 
-            private void TestState_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+            public string? LastChanged { get; private set; }
+
+            private void TestState_PropertyChanged(object? sender, PropertyChangedEventArgs e)
             {
                 PropertyChangedFired++;
+                LastChanged += e.PropertyName;
             }
 
-            private void TestState_StateChanged(string obj)
+            private void TestState_StateChanged(string propertyName)
             {
                 StateChangedFired++;
+                LastChanged = propertyName;
             }
 
             #region Name
@@ -170,6 +201,38 @@ namespace Tests
                         NotifyChanged();
                     }
                 } 
+            }
+            #endregion
+
+            #region ValuePropertyChanged
+            private bool _valuePropertyChanged;
+            public bool ValuePropertyChanged
+            {
+                get => _valuePropertyChanged;
+                set
+                {
+                    if (_valuePropertyChanged != value)
+                    {
+                        _valuePropertyChanged = value;
+                        NotifyPropertyChanged();
+                    }
+                }
+            }
+            #endregion
+
+            #region ValueStateChanged
+            private bool _valueStateChanged;
+            public bool ValueStateChanged
+            {
+                get => _valueStateChanged;
+                set
+                {
+                    if (_valueStateChanged != value)
+                    {
+                        _valueStateChanged = value;
+                        NotifyStateChanged();
+                    }
+                }
             }
             #endregion
 
