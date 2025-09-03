@@ -63,8 +63,12 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.9.2
+- `StateContainer`. Added the `NotifyChanged` method to invoke
+both `NotifyStateChanged` and `NotifyPropertyChanged` events. 
+
 v8.9.1
-- store the constuctor initial value as the `StringValue` default to be used 
+- `MinMaxN.StringValue`. Store the constuctor initial value as the default value to be used 
 if the value assigned to `StringValue` can't be converted to the underlying INumber
 
 v8.9.0

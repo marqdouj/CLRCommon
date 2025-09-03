@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Data;
 using System.Runtime.CompilerServices;
 
 namespace Marqdouj.CLRCommon
@@ -21,6 +22,15 @@ namespace Marqdouj.CLRCommon
             if (oldValue?.Equals(newValue) ?? false) return;
 
             oldValue = newValue;
+            NotifyChanged(propertyName);
+        }
+
+        /// <summary>
+        /// Invokes NotifyStateChanged/NotifyPropertyChanged
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected virtual void NotifyChanged([CallerMemberName] string propertyName = "")
+        {
             NotifyStateChanged(propertyName);
             NotifyPropertyChanged(propertyName);
         }

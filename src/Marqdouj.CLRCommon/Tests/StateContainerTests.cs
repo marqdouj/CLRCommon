@@ -1,10 +1,13 @@
 ﻿using Marqdouj.CLRCommon;
+using System.Security.Cryptography;
 
 namespace Tests
 {
     [TestClass]
     public sealed class StateContainerTests
     {
+        #region SetValue
+
         [TestMethod]
         public void StateContainer_SuppressNotifications_False()
         {
@@ -65,6 +68,72 @@ namespace Tests
             Assert.AreEqual(3, state.StateChangedFired);
         }
 
+        #endregion
+
+        #region Manual
+
+        [TestMethod]
+        public void StateContainer_SuppressNotifications_Manual_False()
+        {
+            //arrange
+            var state = new TestState { SuppressNotifications = false };
+
+            //act 
+            state.Value = true;
+
+            //assert
+            Assert.AreEqual(1, state.PropertyChangedFired);
+            Assert.AreEqual(1, state.StateChangedFired);
+        }
+
+        [TestMethod]
+        public void StateContainer_SuppressNotifications_Manual__True()
+        {
+            //arrange
+            var state = new TestState { SuppressNotifications = true };
+
+            //act 
+            state.Value = true;
+
+            //assert
+            Assert.AreEqual(0, state.PropertyChangedFired);
+            Assert.AreEqual(0, state.StateChangedFired);
+        }
+
+        [TestMethod]
+        public void StateContainer_MultipleValues_SuppressNotifications_Manual()
+        {
+            //arrange
+            var state = new TestState { SuppressNotifications = true };
+
+            //act 
+            state.Value = true;
+            state.Value = false;
+            state.Value = true;
+
+            //assert
+            Assert.AreEqual(0, state.PropertyChangedFired);
+            Assert.AreEqual(0, state.StateChangedFired);
+        }
+
+        [TestMethod]
+        public void StateContainer_MultipleValues_AllNotifications_Manual()
+        {
+            //arrange
+            var state = new TestState { SuppressNotifications = false };
+
+            //act 
+            state.Value = true;
+            state.Value = false;
+            state.Value = true;
+
+            //assert
+            Assert.AreEqual(3, state.PropertyChangedFired);
+            Assert.AreEqual(3, state.StateChangedFired);
+        }
+
+        #endregion
+
         private class TestState : StateContainer, IDisposable
         {
             public TestState()
@@ -86,6 +155,22 @@ namespace Tests
             #region Name
             private string? name;
             public string? Name { get => name; set => SetValue(ref name, value); }
+            #endregion
+
+            #region Value
+            private bool _value;
+            public bool Value 
+            { 
+                get => _value;
+                set 
+                { 
+                    if (_value != value)
+                    {
+                        _value = value;
+                        NotifyChanged();
+                    }
+                } 
+            }
             #endregion
 
             public int StateChangedFired { get; private set; }
