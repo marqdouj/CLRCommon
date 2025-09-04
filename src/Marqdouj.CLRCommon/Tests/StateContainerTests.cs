@@ -1,5 +1,6 @@
 ﻿using Marqdouj.CLRCommon;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 namespace Tests
@@ -159,6 +160,51 @@ namespace Tests
 
             //assert
             Assert.AreEqual(nameof(TestState.ValuePropertyChanged), state.LastChanged);
+        }
+
+        [TestMethod]
+        public void StateContainer_ValueWillChange_True()
+        {
+            //arrange
+            var state = new TestState();
+            const string oldValue = "oldValue";
+            const string newValue = "newValue";
+
+            //act 
+            var willChange = TestState.ValueWillChange<string>(oldValue, newValue);
+
+            //assert
+            Assert.IsTrue(willChange);
+        }
+
+        [TestMethod]
+        public void StateContainer_ValueWillChange_False()
+        {
+            //arrange
+            var state = new TestState();
+            const string oldValue = "sameValue";
+            const string newValue = "sameValue";
+
+            //act 
+            var willChange = TestState.ValueWillChange<string>(oldValue, newValue);
+
+            //assert
+            Assert.IsFalse(willChange);
+        }
+
+        [TestMethod]
+        public void StateContainer_ValueWillChange_False_OldNull_NewNull()
+        {
+            //arrange
+            var state = new TestState();
+            const string? oldValue = null;
+            const string? newValue = null;
+
+            //act 
+            var willChange = TestState.ValueWillChange<string?>(oldValue, newValue);
+
+            //assert
+            Assert.IsFalse(willChange);
         }
 
         private class TestState : StateContainer, IDisposable

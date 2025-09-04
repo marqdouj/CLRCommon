@@ -63,6 +63,14 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.10.0
+- `StateContainer`. 
+	- Added the `SetValueB` virtual method. Returns true if the value was changed.
+	- Changed `SetValue` to a virtual method.
+    - Added the static `ValueWillChange` method; a pre-check that the value will be changed by the `SetValue` method.
+ May be used for custom scenarios where logic needs to know if the value would have been changed but the `SetValue` method
+ will not be invoked.
+
 v8.9.3
 - `StateContainer`. Added the `CallerMemberName` attribute to invoke
 both `NotifyStateChanged` and `NotifyPropertyChanged` events. 
