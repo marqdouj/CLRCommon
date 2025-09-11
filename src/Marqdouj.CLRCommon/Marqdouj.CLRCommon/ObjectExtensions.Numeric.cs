@@ -1,4 +1,6 @@
-﻿namespace Marqdouj.CLRCommon
+﻿using System.Numerics;
+
+namespace Marqdouj.CLRCommon
 {
     public static class ObjectExtensions
     {
@@ -13,11 +15,24 @@
         {
             if (obj == null) return false;
 
-            switch (Type.GetTypeCode(obj.GetType()))
+            var typeCode = Type.GetTypeCode(obj.GetType());
+
+            switch (typeCode)
             {
                 case TypeCode.Byte:
                 case TypeCode.SByte:
                     return includeByte;
+            }
+
+            //Check using IsAssignableFrom (double)
+            if (typeof(INumber<double>).IsAssignableFrom(obj.GetType()))
+            {
+                return true;
+            }
+
+            //Fallback from IsAssignableFrom
+            switch (Type.GetTypeCode(obj.GetType()))
+            {
                 case TypeCode.UInt16:
                 case TypeCode.UInt32:
                 case TypeCode.UInt64:

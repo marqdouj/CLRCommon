@@ -63,6 +63,9 @@ The NuGet package can be found [here](https://www.nuget.org/packages/Marqdouj.CL
 	- **`ToInt64List`** - Converts delimited string of long to Int64 List
 
 ## Release Notes
+v8.10.1
+-  `ObjectExtensions.IsNumber()`. Enhanced with `INumber<T>`.IsAssignableFrom
+
 v8.10.0
 - `StateContainer`. 
 	- Added the `SetValueB` virtual method. Returns true if the value was changed.
